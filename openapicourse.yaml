@@ -32,11 +32,39 @@ paths:
                 minItems: 1
                 maxItems: 100
                 items:
-                  type: string
-                  description: Customer Name
-                  default: "John Rambo"
-                  minLength: 2
-                  maxLength: 100
+                  type: object
+                  description: Customer object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    firstName:
+                      description: First Name
+                      type: string
+                      minLength: 2
+                      maxLength: 100
+                      example: "John"
+                    lastName:
+                      description: Last Name
+                      type: string
+                      minLength: 2
+                      maxLength: 100
+                      example: "Rambo"
+                    address:
+                      type: object
+                      properties:
+                        line1:
+                          type: string
+                          example: 123 Main
+                        line2:
+                          type: string
+                          example: Room 503
+                        city:
+                          type: string
+                          example: St Pete
+                        zipcode:
+                          type: string
+                          example: 33701
   /v1/beers:
     get:
       responses:
