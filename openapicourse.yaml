@@ -2,7 +2,16 @@ openapi: 3.0.3
 info:
   title: OpenAPI Course
   description: Specification for OpenAPI Course
+  termsOfService: http://example.com/terms/
   version: 1.0.0
+  contact:
+    name: Ivo Eersels
+    url: https://github.com/colwynB2K
+    email: ivo.eersels@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
 servers:
   - url: 'https'
 paths:
