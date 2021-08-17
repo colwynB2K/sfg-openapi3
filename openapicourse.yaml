@@ -62,6 +62,17 @@ paths:
                         city:
                           type: string
                           example: St Pete
+                        stateCode:
+                          type: string
+                          description: Two letter state code
+                          minLength: 2
+                          maxLength: 2
+                          enum:
+                            - AK
+                            - AL
+                            - AR
+                            - AZ
+                            - CA
                         zipcode:
                           type: string
                           example: 33701
