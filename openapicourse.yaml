@@ -25,3 +25,10 @@ paths:
       responses:
         '200':
           description: List of Customers
+  /v1/beers:
+    get:
+      responses:
+        '200':
+          description: List of Beers
+        '404':
+          description: No Beers found (the end is near!)
