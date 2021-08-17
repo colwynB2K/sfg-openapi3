@@ -13,6 +13,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
 servers:
-  - url: 'https'
+  - url: https://dev.example.com
+    description: Development Server
 paths:
   
