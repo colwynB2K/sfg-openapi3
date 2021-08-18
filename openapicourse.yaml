@@ -63,6 +63,23 @@ paths:
                 $ref: "#/components/schemas/BeerPagedList"
         404:
           description: No Beers found (the end is near!)
+  /v1/beers/{beerId}:
+    get:
+      parameters:
+        - name: beerId
+          in: path
+          description: Beer Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Found Beer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Beer"
 components:
   schemas:
     Address:
