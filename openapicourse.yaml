@@ -32,6 +32,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerList"
+  /v1/customers/{customerId}:
+    get:
+      parameters:
+        - name: customerId
+          in: path
+          description: Customer Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+           description: Found Customer
+           content:
+             application/json:
+               schema:
+                 $ref: "#/components/schemas/Customer"
   /v1/beers:
     get:
       parameters:
