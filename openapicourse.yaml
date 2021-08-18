@@ -37,7 +37,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BeerList"
+                $ref: "#/components/schemas/BeerPagedList"
         404:
           description: No Beers found (the end is near!)
 components:
@@ -100,7 +100,7 @@ components:
       type: object
       properties:
         name:
-          description: Name
+          description: Brewery Name
           type: string
           example: "InBev"
         location:
@@ -148,3 +148,36 @@ components:
       maxItems: 100
       items:
         $ref: "#/components/schemas/Beer"
+    BeerPagedList:
+      type: object
+      allOf:  # Inherit all properties on the generic PagedResponse
+        - $ref: "#/components/schemas/PagedResponse"
+      properties:
+        content:  # Specify that it will be a pages response containing a list of Beer objects
+          $ref: "#/components/schemas/BeerList"
+    PagedResponse:
+      type: object
+      properties:
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+              format: int32
+            pageNumber:
+              type: integer
+              format: int32
+            pageSize:
+              type: integer
+              format: int32
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
