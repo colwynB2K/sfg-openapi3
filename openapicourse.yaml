@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: OpenAPI Course
   description: Specification for OpenAPI Course
-  termsOfService: http://example.com/terms/
+  termsOfService: https://example.com/terms/
   version: 1.0.0
   contact:
     name: Ivo Eersels
@@ -150,10 +150,10 @@ components:
         $ref: "#/components/schemas/Beer"
     BeerPagedList:
       type: object
-      allOf:  # Inherit all properties on the generic PagedResponse
+      allOf:  # The response must consist only of PagedResponse objects
         - $ref: "#/components/schemas/PagedResponse"
       properties:
-        content:  # Specify that it will be a pages response containing a list of Beer objects
+        content:  # Specify that it will be a paged response containing a list of Beer objects
           $ref: "#/components/schemas/BeerList"
     PagedResponse:
       type: object
