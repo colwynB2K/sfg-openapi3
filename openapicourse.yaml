@@ -22,6 +22,8 @@ servers:
 paths:
   /v1/customers:
     get:
+      summary: List Customers
+      description: Get a list of customers in the system
       parameters:
         - $ref: "#/components/parameters/PageNumber"
         - $ref: "#/components/parameters/PageSize"
@@ -34,6 +36,8 @@ paths:
                 $ref: "#/components/schemas/CustomerList"
   /v1/customers/{customerId}:
     get:
+      summary: Get Customer by id
+      description: Get a single **Customer** by its id value.
       parameters:
         - name: customerId
           in: path
@@ -51,6 +55,8 @@ paths:
                  $ref: "#/components/schemas/Customer"
   /v1/beers:
     get:
+      summary: List Beers
+      description: List all beers in the system.
       parameters:
         - $ref: "#/components/parameters/PageNumber"
         - $ref: "#/components/parameters/PageSize"
@@ -65,6 +71,8 @@ paths:
           description: No Beers found (the end is near!)
   /v1/beers/{beerId}:
     get:
+      summary: Get Beer by id
+      description: Get a single Beer by its id value.
       parameters:
         - name: beerId
           in: path
