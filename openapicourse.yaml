@@ -24,6 +24,8 @@ paths:
     get:
       summary: List Customers
       description: Get a list of customers in the system
+      tags:
+        - Customers
       parameters:
         - $ref: "#/components/parameters/PageNumber"
         - $ref: "#/components/parameters/PageSize"
@@ -38,6 +40,8 @@ paths:
     get:
       summary: Get Customer by id
       description: Get a single **Customer** by its id value.
+      tags:
+        - Customers
       parameters:
         - name: customerId
           in: path
@@ -57,6 +61,8 @@ paths:
     get:
       summary: List Beers
       description: List all beers in the system.
+      tags:
+        - Beers
       parameters:
         - $ref: "#/components/parameters/PageNumber"
         - $ref: "#/components/parameters/PageSize"
@@ -73,6 +79,8 @@ paths:
     get:
       summary: Get Beer by id
       description: Get a single Beer by its id value.
+      tags:
+        - Beers
       parameters:
         - name: beerId
           in: path
