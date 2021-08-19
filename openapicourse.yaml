@@ -37,6 +37,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerList"
+    post:
+      summary: New Customer
+      description: Create a new customer
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        '201':
+          description: Customer Created
   /v1/customers/{customerId}:
     get:
       summary: Get Customer by id
