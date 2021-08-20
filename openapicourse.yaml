@@ -28,8 +28,8 @@ paths:
         - Customers
       operationId: v1ListCustomers
       parameters:
-        - $ref: "#/components/parameters/PageNumber"
-        - $ref: "#/components/parameters/PageSize"
+        - $ref: "#/components/parameters/PageNumberQueryParam"
+        - $ref: "#/components/parameters/PageSizeQueryParam"
       responses:
         '200':
           description: List of Customers
@@ -66,13 +66,7 @@ paths:
         - Customers
       operationId: v1GetCustomerById
       parameters:
-        - name: customerId
-          in: path
-          description: Customer Id
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: '#/components/parameters/CustomerIdRequiredPathParam'
       responses:
         '200':
            description: Found Customer
@@ -80,6 +74,23 @@ paths:
              application/json:
                schema:
                  $ref: "#/components/schemas/Customer"
+    put:
+      summary: Update Customer
+      description: Update customer by id.
+      tags:
+        - Customers
+      operationId: v1UpdateCustomerById
+      parameters:
+        - $ref: '#/components/parameters/CustomerIdRequiredPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        '204':
+          description: Customer Updated
   /v1/beers:
     get:
       summary: List Beers
@@ -88,8 +99,8 @@ paths:
         - Beers
       operationId: v1ListBeers
       parameters:
-        - $ref: "#/components/parameters/PageNumber"
-        - $ref: "#/components/parameters/PageSize"
+        - $ref: "#/components/parameters/PageNumberQueryParam"
+        - $ref: "#/components/parameters/PageSizeQueryParam"
       responses:
         200:
           description: List of Beers
@@ -286,7 +297,7 @@ components:
             unpaged:
               type: boolean
   parameters:
-    PageNumber:
+    PageNumberQueryParam:
       name: pageNumber
       in: query
       description: Page Number
@@ -294,7 +305,7 @@ components:
         type: integer
         format: int32
         default: 1
-    PageSize:
+    PageSizeQueryParam:
       name: pageSize
       in: query
       description: Page Size
@@ -303,3 +314,11 @@ components:
         type: integer
         format: int32
         default: 25
+    CustomerIdRequiredPathParam:
+      name: customerId
+      in: path
+      description: Customer Id
+      required: true
+      schema:
+        type: string
+        format: uuid
