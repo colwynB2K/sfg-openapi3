@@ -139,13 +139,7 @@ paths:
         - Beers
       operationId: v1GetBeerById
       parameters:
-        - name: beerId
-          in: path
-          description: Beer Id
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: '#/components/parameters/BeerIdRequiredPathParam'
       responses:
         '200':
           description: Found Beer
@@ -153,6 +147,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Beer"
+    put:
+      summary: Update Beer
+      description: Update beer by id.
+      tags:
+        - Beers
+      operationId: v1UpdateBeerById
+      parameters:
+        - $ref: '#/components/parameters/BeerIdRequiredPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Beer"
+      responses:
+        '204':
+          description: Beerer Updated
 components:
   schemas:
     Address:
@@ -318,6 +329,14 @@ components:
       name: customerId
       in: path
       description: Customer Id
+      required: true
+      schema:
+        type: string
+        format: uuid
+    BeerIdRequiredPathParam:
+      name: beerId
+      in: path
+      description: Beer Id
       required: true
       schema:
         type: string
