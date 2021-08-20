@@ -174,7 +174,18 @@ paths:
               $ref: "#/components/schemas/Beer"
       responses:
         '204':
-          description: Beerer Updated
+          description: Beer Updated
+    delete:
+      summary: Delete Beer
+      description: Delete beer by id.
+      tags:
+        - Beers
+      operationId: v1DeleteBeerById
+      parameters:
+        - $ref: '#/components/parameters/BeerIdRequiredPathParam'
+      responses:
+        '200':
+          description: Beer Deleted
 components:
   schemas:
     Address:
