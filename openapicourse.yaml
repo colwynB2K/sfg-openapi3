@@ -156,6 +156,7 @@ components:
         id:
           type: string
           format: uuid
+          readOnly: true					# Because of this the id property will disappear in the Customer object in write operations like POST, PUT, PATCH
         firstName:
           description: First Name
           type: string
