@@ -116,6 +116,57 @@ paths:
           description: Customer Deleted
         '404':
           description: Not Found
+  /v1/customers/{customerId}/orders:
+    post:
+      summary: Place Order
+      description: Place a beer order for customer by id.
+      tags:
+        - Customers
+        - Order Service
+      operationId: v1PlaceOrderForCustomerById
+      parameters:
+        - $ref: "#/components/parameters/CustomerIdRequiredPathParam"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BeerOrder"
+      responses:
+        '201':
+          description: Order Created
+          headers:
+            Location:
+              description: Reference to created Order
+              schema:
+                type: string
+                format: uri
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      callbacks:
+        orderStatusChange:
+          '${request.body#/orderStatusCallbackUrl}':
+            summary: Webhook for order status change notifications
+            description: The server will call this client-side url (mentioned in the request body) to notify it of the new order status
+            post:
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      properties:
+                        orderId:
+                          type: string
+                          format: uuid
+                        orderStatus:
+                          type: string
+              responses:
+                '200':
+                  description: OK
   /v1/beers:
     get:
       summary: List Beers
@@ -331,6 +382,49 @@ components:
       properties:
         content:  # Specify that it will be a paged response containing a list of Beer objects
           $ref: "#/components/schemas/BeerList"
+    BeerOrder:
+      type: object
+      required:
+        - customerId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          nullable: true
+        customerId:
+          type: string
+          format: uuid
+        customerRef:
+          type: string
+          nullable: true
+        beerOrderLines:
+          type: array
+          items:
+            $ref: "#/components/schemas/BeerOrderLine"
+        orderStatusCallbackUrl:
+          type: string
+          format: uri
+    BeerOrderLine:
+      type: object
+      required:
+        - upc
+        - quantity
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          nullable: true
+        beerId:
+          type: string
+          format: uuid
+          readOnly: true
+        upc:
+          type: string
+        quantity:
+          type: integer
+          format: int32
     PagedResponse:
       type: object
       properties:
