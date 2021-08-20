@@ -91,6 +91,17 @@ paths:
       responses:
         '204':
           description: Customer Updated
+    delete:
+      summary: Delete Customer
+      description: Delete customer by id.
+      tags:
+        - Customers
+      operationId: v1DeleteCustomerById
+      parameters:
+        - $ref: '#/components/parameters/CustomerIdRequiredPathParam'
+      responses:
+        '200':
+          description: Customer Deleted
   /v1/beers:
     get:
       summary: List Beers
