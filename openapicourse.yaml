@@ -268,6 +268,7 @@ paths:
 security:
   # Applying a security scheme will make the 'Authorize' button appear on the Swagger UI Api documentation!
   - BasicAuth: []     # As OAuth2 and OpenId allow you to provide scopes or roles as an array, the same object structure is applied to Basic Authentication security scheme although it is pointless there. So, you are required to provide this empty array!
+  - JwtAuthToken: []
 components:
   schemas:
     Address:
@@ -492,3 +493,7 @@ components:
     BasicAuth:
       type: http
       scheme: basic
+    JwtAuthToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
